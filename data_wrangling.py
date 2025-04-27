@@ -6,17 +6,14 @@ df = pd.read_csv(file_path)
 print(df.columns)
 
 
-# Load the data
 
 
-# 1. Standardize column names (remove spaces and lower case)
 df.columns = df.columns.str.strip().str.lower()
 
-# 2. Handle missing values
 # Replace blank strings with NaN
 df.replace('', pd.NA, inplace=True)
 
-# 3. Convert numeric columns to proper types
+# Convert numeric columns to proper types
 numeric_cols = [
     'datavalue', 'datavaluealt', 'lowconfidencelimit', 'highconfidencelimit',
     'locationid'
@@ -39,7 +36,7 @@ df = pd.concat([df, geo_split], axis=1)
 
 df.drop(columns=['geolocation'], inplace=True)
 
-# 6. Optional: Fill missing values for statification with general population. 
+#Fill missing values for statification with general population. 
 strat_cols = ['stratification1', 'stratification2', 'stratification3']
 df[strat_cols] = df[strat_cols].fillna('General Population')
 
