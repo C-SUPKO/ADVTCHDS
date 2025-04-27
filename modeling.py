@@ -7,7 +7,7 @@ import numpy as np
 def rfCancer():
     df = pd.read_csv('data/clean_cdi.csv')
 
-    # Focus  on Cancer and per 100,000
+    # Focus on Cancer and per 100,000
     modeldta = df[(df['topic'] == 'Cancer') & (df['datavalueunit'] == 'per 100,000')].copy()
 
     # Drop missing 
@@ -16,7 +16,7 @@ def rfCancer():
    
     modeldta = modeldta[['yearstart', 'datavalue', 'locationdesc', 'stratification1', 'question']]
 
-    # Step 5: Fill missing fields
+   #    Fill missing fields
     modeldta['stratification1'] = modeldta['stratification1'].fillna('Overall')
     modeldta['locationdesc'] = modeldta['locationdesc'].fillna('Unknown')
     modeldta['question'] = modeldta['question'].fillna('Unknown')
